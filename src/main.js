@@ -13,7 +13,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 1000,
-    title: 'DuckDB',
+    title: 'DuckDB (Unofficial)',
     icon: path.join(__dirname, 'assets/icon.png'),
     webPreferences: {
       nodeIntegration: false,
