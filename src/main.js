@@ -6,9 +6,6 @@ import { DuckDBInstance } from '@duckdb/node-api';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let expressProcess;
-let clientProcess;
-
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
@@ -56,10 +53,5 @@ app.on('window-all-closed', () => {
 });
 
 app.on('quit', async () => {
-  if (db) {
-    await db.run('CALL stop_ui_server();');
-  }
-
-  if (expressProcess) expressProcess.kill();
-  if (clientProcess) clientProcess.kill();
+  db?.close?.();
 });
