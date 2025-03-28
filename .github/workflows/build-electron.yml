@@ -49,7 +49,7 @@ jobs:
       - name: Build Electron App
         run: |
           if [[ "${{ runner.os }}" == "macOS" ]]; then
-            npm run build:mac:arm64 && npm run build:mac:x64
+            npm run build:mac
           elif [[ "${{ runner.os }}" == "Windows" ]]; then
             npm run build:win
           else
