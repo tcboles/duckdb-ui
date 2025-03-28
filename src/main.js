@@ -2,6 +2,9 @@ import { app, BrowserWindow } from 'electron';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { DuckDBInstance } from '@duckdb/node-api';
+import electronUpdater from 'electron-updater';
+
+const { autoUpdater } = electronUpdater;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +23,23 @@ function createWindow() {
   });
 
   win.loadURL('http://localhost:4213');
+
+  // Trigger update check
+  autoUpdater.checkForUpdatesAndNotify();
 }
+
+autoUpdater.on('update-downloaded', () => {
+  const choice = dialog.showMessageBoxSync({
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Update Ready',
+    message: 'A new version has been downloaded. Restart now?'
+  });
+
+  if (choice === 0) {
+    autoUpdater.quitAndInstall();
+  }
+});
 
 if (process.platform === 'darwin') {
   app.dock.setIcon(path.join(__dirname, 'assets/icon.png'));
