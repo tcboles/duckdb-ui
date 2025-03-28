@@ -1,8 +1,8 @@
-import { app, BrowserWindow } from 'electron';
-import { fileURLToPath } from 'url';
-import path from 'path';
 import { DuckDBInstance } from '@duckdb/node-api';
+import { app, BrowserWindow } from 'electron';
 import electronUpdater from 'electron-updater';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const { autoUpdater } = electronUpdater;
 
@@ -13,7 +13,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 1000,
-    title: 'DuckDB (Unofficial)',
+    title: `DuckDB (Unofficial)`,
     icon: path.join(__dirname, 'assets/icon.png'),
     webPreferences: {
       nodeIntegration: false,
@@ -58,7 +58,7 @@ async function startServers() {
 
 app.whenReady().then(async () => {
   // Set the application name (macOS uses this for the app menu)
-  app.setName('DuckDB');
+  app.setName('DuckDB (Unofficial)');
 
   await startServers();
 

@@ -2,7 +2,7 @@
   "name": "DuckDB",
   "productName": "DuckDB",
   "description": "DuckDB",
-  "version": "v1.2.1-0",
+  "version": "1.2.1-1",
   "type": "module",
   "main": "src/main.js",
   "build": {
@@ -45,7 +45,7 @@
     "build:win": "electron-builder --win --publish never",
     "build:linux": "electron-builder --linux --publish never",
     "lint": "eslint --fix ./src",
-    "rebuild-duckdb": "electron-rebuild -f -w @duckdb/node-api"
+    "repush-tag": "bash ./scripts/repush-tag.sh"
   },
   "author": "Thomas Boles <tcboles@me.com> (https://github.com/tcboles)",
   "license": "MIT",
