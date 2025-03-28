@@ -1,6 +1,7 @@
 {
   "name": "DuckDB",
   "productName": "DuckDB",
+  "type": "module",
   "build": {
     "appId": "com.tcboles.duckdb",
     "icon": "src/assets/icon.png",

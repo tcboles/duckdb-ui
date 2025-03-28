@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { DuckDBInstance } from '@duckdb/node-api';
@@ -11,19 +11,17 @@ let clientProcess;
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1000,
-    height: 800,
+    width: 1200,
+    height: 1000,
     title: 'DuckDB',
     icon: path.join(__dirname, 'assets/icon.png'),
     webPreferences: {
-      nodeIntegration: true, // if you need nodeIntegration
-      contextIsolation: false, // be mindful of security implications
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: false,
+      contextIsolation: true,
+      partition: 'persist:duckdb'
     }
   });
 
-  // In development, load the React Vite dev server
-  // In production, you might load a local file served by Express or bundled static assets.
   win.loadURL('http://localhost:4213');
 }
 
@@ -41,13 +39,6 @@ async function startServers() {
   // Optionally, wait a few seconds to ensure the servers are up before creating the window.
   createWindow();
 }
-
-ipcMain.on('open-devtools', (event) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  if (win) {
-    win.webContents.openDevTools({ mode: 'detach' });
-  }
-});
 
 app.whenReady().then(async () => {
   // Set the application name (macOS uses this for the app menu)
