@@ -2,33 +2,51 @@
   "name": "DuckDB",
   "productName": "DuckDB",
   "build": {
-    "appId": "com.finqore.duckdb",
+    "appId": "com.tcboles.duckdb",
     "icon": "src/assets/icon.png",
     "mac": {
-      "category": "public.app-category.utilities"
-    }
+      "target": "dmg",
+      "identity": "Thomas Boles",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "afterSign": "build/notarize.js",
+    "win": {
+      "target": "nsis",
+      "icon": "src/assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility"
+    },
+    "files": [
+      "src/**",
+      "build/**"
+    ]
   },
-  "version": "0.0.1",
+  "version": "1.2.1",
   "description": "DuckDB",
   "main": "src/main.js",
   "scripts": {
-    "start": "nodemon --watch . --ext js,jsx,ts,tsx --exec \"electron .\"",
-    "build:mac": "electron-builder --mac",
-    "build:win": "electron-builder --win",
-    "build:linux": "electron-builder --linux",
-    "lint": "eslint --fix ./src"
+    "dev": "nodemon --watch . --ext js,jsx,ts,tsx --exec \"electron .\"",
+    "start": "electron .",
+    "build:mac:arm64": "electron-builder --mac --arm64 --publish never",
+    "build:mac:x64": "electron-builder --mac --x64 --publish never",
+    "build:win": "electron-builder --win --publish never",
+    "build:linux": "electron-builder --linux --publish never",
+    "lint": "eslint --fix ./src",
+    "publish": "git tag -d v1.2.1 && git push origin :refs/tags/v1.2.1 && git tag v1.2.1 && git push origin v1.2.1",
+    "rebuild-duckdb": "electron-rebuild -f -w @duckdb/node-api"
   },
   "author": "Thomas Boles <tcboles@me.com> (https://github.com/tcboles)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.8",
-    "@babel/node": "^7.15.8",
-    "@babel/plugin-transform-runtime": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
     "babel-plugin-root-import": "^6.6.0",
     "electron": "^35.1.1",
     "electron-builder": "^26.0.12",
+    "electron-notarize": "^1.2.2",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.1",
