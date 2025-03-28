@@ -34,13 +34,6 @@
     "files": [
       "src/**",
       "build/**"
-    ],
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "tcboles",
-        "repo": "duckdb-ui"
-      }
     ]
   },
   "scripts": {
@@ -55,10 +48,8 @@
   "author": "Thomas Boles <tcboles@me.com> (https://github.com/tcboles)",
   "license": "MIT",
   "devDependencies": {
-    "babel-plugin-root-import": "^6.6.0",
     "electron": "^35.1.1",
     "electron-builder": "^26.0.12",
-    "electron-is-dev": "^3.0.1",
     "electron-notarize": "^1.2.2",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^10.1.1",
@@ -68,8 +59,6 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
-    "@duckdb/node-api": "^1.2.1-alpha.16",
-    "electron-log": "^5.3.3",
-    "electron-updater": "^6.6.2"
+    "@duckdb/node-api": "^1.2.1-alpha.16"
   }
 }
