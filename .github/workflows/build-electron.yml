@@ -13,24 +13,23 @@ jobs:
     name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      strategy:
-        matrix:
-          include:
-            - name: macOS M1 (arm64)
-              os: macos-latest
-              build_script: build:mac:arm64
+      matrix:
+        include:
+          - name: macOS M1 (arm64)
+            os: macos-latest
+            build_script: build:mac:arm64
 
-            - name: macOS Intel (x64)
-              os: macos-13
-              build_script: build:mac:x64
+          - name: macOS Intel (x64)
+            os: macos-13
+            build_script: build:mac:x64
 
-            - name: Windows
-              os: windows-latest
-              build_script: build:win
+          - name: Windows
+            os: windows-latest
+            build_script: build:win
 
-            - name: Linux
-              os: ubuntu-latest
-              build_script: build:linux
+          - name: Linux
+            os: ubuntu-latest
+            build_script: build:linux
 
     env:
       APPLE_ID: ${{ secrets.APPLE_ID }}
@@ -95,5 +94,4 @@ jobs:
           tag_name: ${{ github.ref_name }}
           files: ./artifacts/**/*.*
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
