@@ -9,10 +9,10 @@
 ## 🚀 Latest Downloads
 
 ### 🔖 Version v1.2.1
-- [MacOS (Apple Silicon)](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-mac-1.2.1-3-arm64.dmg)
-- [MacOS (intel)](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-mac-1.2.1-3-x64.dmg)
-- [Windows](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB.Setup-win.1.2.1-3.exe)
-- [Linux](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-linux-1.2.1-3.AppImage)
+- [MacOS (Apple Silicon)](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-1.2.1-3-mac-arm64.dmg)
+- [MacOS (intel)](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-1.2.1-3-mac-x64.dmg)
+- [Windows](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB.Setup-1.2.1-3-win-x64.exe)
+- [Linux](https://github.com/tcboles/duckdb-ui/releases/download/v1.2.1-3/DuckDB-1.2.1-3-linux-x86_64.AppImage)
 
 ---
 

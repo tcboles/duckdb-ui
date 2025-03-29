@@ -75,7 +75,8 @@ jobs:
             dist/*.deb
             dist/*.zip
             dist/*.tar.gz
-            dist/latest-*.*
+            dist/latest-*.yml
+            dist/latest-*.json
           if-no-files-found: ignore
 
   release:
