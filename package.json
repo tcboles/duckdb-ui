@@ -20,16 +20,19 @@
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist"
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
     },
     "afterSign": "build/notarize.js",
     "win": {
       "target": "nsis",
-      "icon": "src/assets/icon.ico"
+      "icon": "src/assets/icon.ico",
+      "artifactName": "${productName}.Setup-${version}-win-${arch}.${ext}"
     },
     "linux": {
       "target": "AppImage",
-      "category": "Utility"
+      "category": "Utility",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
     },
     "files": [
       "src/**",
