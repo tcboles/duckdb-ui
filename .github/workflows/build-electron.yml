@@ -13,8 +13,24 @@ jobs:
     name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+      strategy:
+        matrix:
+          include:
+            - name: macOS M1 (arm64)
+              os: macos-latest
+              build_script: build:mac:arm64
+
+            - name: macOS Intel (x64)
+              os: macos-13
+              build_script: build:mac:x64
+
+            - name: Windows
+              os: windows-latest
+              build_script: build:win
+
+            - name: Linux
+              os: ubuntu-latest
+              build_script: build:linux
 
     env:
       APPLE_ID: ${{ secrets.APPLE_ID }}
@@ -35,9 +51,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Only for macOS: import Developer ID certificate
       - name: Import macOS signing certificate
-        if: matrix.os == 'macos-latest'
+        if: contains(matrix.os, 'macos')
         run: |
           echo "${{ secrets.CERTIFICATE_P12 }}" | base64 --decode > certificate.p12
           security create-keychain -p "" build.keychain
@@ -47,20 +62,13 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
 
       - name: Build Electron App
-        run: |
-          if [[ "${{ runner.os }}" == "macOS" ]]; then
-            npm run build:mac
-          elif [[ "${{ runner.os }}" == "Windows" ]]; then
-            npm run build:win
-          else
-            npm run build:linux
-          fi
+        run: npm run ${{ matrix.build_script }}
         shell: bash
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ runner.os }}-build
+          name: ${{ matrix.name }}-build
           path: |
             dist/*.dmg
             dist/*.exe
@@ -89,4 +97,5 @@ jobs:
           tag_name: ${{ github.ref_name }}
           files: ./artifacts/**/*.*
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -40,6 +40,8 @@
     "dev": "nodemon --watch . --ext js,jsx,ts,tsx --exec \"electron .\"",
     "start": "electron .",
     "build:mac": "electron-builder --mac --publish never",
+    "build:mac:arm64": "electron-builder --mac --arm64 --publish never",
+    "build:mac:x64": "electron-builder --mac --x64 --publish never",
     "build:win": "electron-builder --win --publish never",
     "build:linux": "electron-builder --linux --publish never",
     "lint": "eslint --fix ./src",
