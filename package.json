@@ -10,11 +10,7 @@
     "icon": "src/assets/icon.png",
     "mac": {
       "target": {
-        "target": "dmg",
-        "arch": [
-          "arm64",
-          "x64"
-        ]
+        "target": "dmg"
       },
       "identity": "Thomas Boles",
       "hardenedRuntime": true,
