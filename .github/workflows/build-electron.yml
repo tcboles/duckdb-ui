@@ -3,7 +3,7 @@ name: Build & Release Electron App
 on:
   push:
     tags:
-      - 'v*' # Triggers only on version tags like v1.2.1
+      - 'v*' # Triggers only on version tags like v1.2.2
 
 permissions:
   contents: write
